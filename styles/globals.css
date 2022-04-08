@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h2 {
+    @apply font-bold text-lg;
+  }
+
+  .html h2 {
+    @apply mt-6 mb-2;
+  }
+
+  .html li {
+    @apply list-disc ml-8 mb-1;
+  }
+}
+
+@layer components {
+  .transition {
+    @apply transition-all duration-150 ease-linear;
+  }
+
+  .scale {
+    @apply hover:scale-105 active:scale-100;
+  }
+
+  .small {
+    @apply font-medium text-sm;
+  }
+}

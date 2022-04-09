@@ -1,35 +1,33 @@
+import { makeUrl } from "@libs/server/util";
 import { useRouter } from "next/router";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useState } from "react";
+import CateCheckButtons from "./CateCheckButtons";
+import SortCheckboxs, { initSort, Isort } from "./SortCheckButtons";
 
 const SearchForm = () => {
-  const [term, setTerm] = useState("");
-  const [error, setError] = useState("");
   const router = useRouter();
+  const { term, title, date } = router.query;
+  const [sort, setSort] = useState<Isort>(initSort);
   const onSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      if (!term.trim()) {
-        return setError("검색어를 입력하세요.");
-      }
-      setTerm("");
-      router.push(`/search/${term}`);
+
+      const url = makeUrl("search", {
+        term: term?.toString() || "",
+        ...(title && { title: title.toString() }),
+        ...(date && { date: date.toString() }),
+      });
+
+      router.push(url);
     },
-    [router, term]
+    [router, title, date, term]
   );
 
   const onChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (error) setError("");
-      setTerm(event.target.value);
-    },
-    [error]
-  );
-
-  const onSort = useCallback(
-    (event: React.MouseEvent) => {
-      const value = (event.target as HTMLInputElement).value;
-      const term = router.query.term;
-      router.push(`/search/${term}?sort=${value}`);
+      setSort(initSort);
+      const url = makeUrl("search", { term: event.target.value });
+      router.push(url);
     },
     [router]
   );
@@ -38,16 +36,18 @@ const SearchForm = () => {
     <>
       <form
         onSubmit={onSubmit}
-        className="flex items-center w-full bg-gray-600 rounded-sm"
+        className="relative flex items-center w-full bg-gray-600 rounded-sm"
       >
         <input
           onChange={onChange}
-          value={term}
           type="text"
           placeholder="Search"
-          className="w-[92%] py-3 px-5 transition ring-gray-400 focus:ring-1 focus:outline-none bg-transparent"
+          className="w-full py-3 px-10 transition ring-gray-400 focus:ring-1 focus:outline-none bg-transparent"
         />
-        <button type="submit" className="py-3 px-2 w-[8%] transition scale">
+        <button
+          type="submit"
+          className="absolute left-0 py-3 px-2 w-[8%] transition scale"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -64,7 +64,10 @@ const SearchForm = () => {
           </svg>
         </button>
       </form>
-      {error && <small className="text-red-500 font-medium"> {error}</small>}
+      <div className="flex justify-between">
+        <SortCheckboxs sort={sort} setSort={setSort} />
+        <CateCheckButtons />
+      </div>
     </>
   );
 };

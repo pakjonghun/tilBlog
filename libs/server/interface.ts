@@ -1,7 +1,5 @@
 export interface MainProps {
-  posts: {
-    date: string;
-    category: string;
-    slug: string;
-  }[];
+  date: Date;
+  category: string;
+  slug: string;
 }

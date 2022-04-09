@@ -3,25 +3,30 @@ import { NextPage } from "next";
 import React from "react";
 
 interface props {
-  sort?: string[];
+  isSelected: boolean;
   id: string;
-  onSort: (event: React.MouseEvent) => void;
+  children?: React.ReactNode;
+  onClick: (event: React.MouseEvent<HTMLInputElement>) => void;
 }
 
-const CheckButton: NextPage<props> = ({ sort, id, onSort }) => {
+const CheckButton: NextPage<props> = ({
+  isSelected = 1,
+  id,
+  children,
+  onClick,
+}) => {
   return (
-    <li>
-      <label
-        className={joinStyleClass(
-          "block scale cursor-pointer transition select-none w-fit",
-          sort?.includes(id) ? "text-gray-400" : "text-gray-50"
-        )}
-        htmlFor={id}
-      >
-        <input onClick={onSort} type="checkbox" value={id} hidden id={id} />
-        {id.toUpperCase()}
-      </label>
-    </li>
+    <label
+      className={joinStyleClass(
+        "flex items-center justify-center w-20 py-2 scale cursor-pointer transition select-none",
+        !isSelected ? "text-gray-400" : "text-gray-50"
+      )}
+      htmlFor={id}
+    >
+      <input onClick={onClick} type="checkbox" value={id} hidden id={id} />
+      {id.toUpperCase()}
+      {children}
+    </label>
   );
 };
 

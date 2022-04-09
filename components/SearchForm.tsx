@@ -7,7 +7,10 @@ import SortCheckboxs, { initSort, Isort } from "./SortCheckButtons";
 const SearchForm = () => {
   const router = useRouter();
   const { term, title, date } = router.query;
-  const [sort, setSort] = useState<Isort>(initSort);
+  const [sort, setSort] = useState<Isort>({
+    date: !date ? null : +date,
+    title: !title ? null : +title,
+  });
   const onSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();

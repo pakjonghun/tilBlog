@@ -1,7 +1,7 @@
 {
   "functions": {
-    "posts/*.md": {
-      "includeFiles": "_files/**"
+    "posts/*": {
+      "includeFiles": "*.md"
     }
   }
 }

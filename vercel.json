@@ -1,7 +1,10 @@
 {
   "functions": {
-    "posts/*": {
-      "includeFiles": "*.md"
+    "pages/search.js": {
+      "includeFiles": "posts/**"
+    },
+    "pages/[slug].js": {
+      "includeFiles": "posts/**"
     }
   }
 }

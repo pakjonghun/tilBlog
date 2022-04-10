@@ -13,10 +13,17 @@ const Home: NextPage<props> = ({ posts }) => {
 };
 
 export const getStaticProps = async () => {
-  const posts = readdirSync("./posts").map((post) => {
-    const file = matter(readFileSync(`./posts/${post}`, "utf-8"));
-    return { ...file.data, slug: post.split(".")[0] };
+  const posts = readdirSync("./posts").map<MainProps>((post) => {
+    const { data } = matter(readFileSync(`./posts/${post}`, "utf-8"));
+    return {
+      date: data.date,
+      category: data.category,
+      slug: post.split(".")[0],
+    };
   });
+
+  posts.sort((a, b) => b.date.getTime() - a.date.getTime());
+
   return {
     props: { posts: JSON.parse(JSON.stringify(posts)) },
   };

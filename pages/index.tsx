@@ -4,7 +4,11 @@ import matter from "gray-matter";
 import Main from "@components/Main";
 import { MainProps } from "@libs/server/interface";
 
-const Home: NextPage<MainProps> = ({ posts }) => {
+interface props {
+  posts: MainProps[];
+}
+
+const Home: NextPage<props> = ({ posts }) => {
   return <Main posts={posts} title={"Home"} />;
 };
 

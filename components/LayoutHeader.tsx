@@ -20,12 +20,7 @@ const LayoutHeader: NextPage<props> = ({ title, isMain, isSearch }) => {
     router.push("/");
   }, [router]);
   return (
-    <header
-      className={joinStyleClass(
-        "bg-gray-800",
-        isSearch ? "h-[21vh]" : "h-[10vh]"
-      )}
-    >
+    <header className={joinStyleClass("bg-gray-800 z-10")}>
       <nav className="flex flex-col py-7 px-5  text-gray-50">
         <div className="flex">
           {!isMain && (

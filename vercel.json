@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "posts/*.md": {
+      "includeFiles": "_files/**"
+    }
+  }
+}

@@ -52,10 +52,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   });
 
-  if (title === "1") posts.sort((a, b) => b.slug.localeCompare(a.slug));
-  if (title === "0") posts.sort((a, b) => a.slug.localeCompare(b.slug));
-  if (date === "1") posts.sort((a, b) => b.date.getTime() - a.date.getTime());
-  if (date === "0") posts.sort((a, b) => a.date.getTime() - b.date.getTime());
+  if (title || date) {
+    if (title === "1") posts.sort((a, b) => b.slug.localeCompare(a.slug));
+    if (title === "0") posts.sort((a, b) => a.slug.localeCompare(b.slug));
+    if (date === "1") posts.sort((a, b) => b.date.getTime() - a.date.getTime());
+    if (date === "0") posts.sort((a, b) => a.date.getTime() - b.date.getTime());
+  } else {
+    posts.sort((a, b) => b.date.getTime() - a.date.getTime());
+  }
 
   return {
     props: { posts: JSON.parse(JSON.stringify(posts)) },

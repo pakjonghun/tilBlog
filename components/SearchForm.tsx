@@ -42,6 +42,8 @@ const SearchForm = () => {
         className="relative flex items-center w-full bg-gray-600 rounded-sm"
       >
         <input
+          autoFocus
+          value={term}
           onChange={onChange}
           type="text"
           placeholder="Search"

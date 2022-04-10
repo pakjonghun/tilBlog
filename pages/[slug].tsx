@@ -1,6 +1,7 @@
 import Layout from "@components/Layout";
 import matter from "gray-matter";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { join } from "path";
 import React from "react";
 import remarkHtml from "remark-html";
 import remarkParse from "remark-parse/lib";
@@ -20,7 +21,9 @@ const Slug: NextPage<props> = ({ html }) => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   if (ctx.params?.slug) {
-    const post = matter.read(`./posts/${ctx.params?.slug}.md`);
+    const post = matter.read(
+      join(process.cwd(), "posts", `${ctx.params?.slug}.md`)
+    );
     const html = await unified()
       .use(remarkParse)
       .use(remarkHtml)

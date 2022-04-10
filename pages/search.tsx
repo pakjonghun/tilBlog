@@ -3,6 +3,7 @@ import { MainProps } from "@libs/server/interface";
 import { readdirSync, readFileSync } from "fs";
 import matter from "gray-matter";
 import { GetServerSideProps, NextPage } from "next";
+import { join } from "path";
 
 interface props {
   posts: MainProps[];
@@ -16,11 +17,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { term, title, date, cate } = ctx.query;
   const word = term?.toString().toLocaleLowerCase().trim();
   const posts: MainProps[] = [];
-  readdirSync("./posts").forEach((post) => {
+  readdirSync(join(process.cwd(), "posts")).forEach((post) => {
     const {
       data: { category, date },
       content,
-    } = matter(readFileSync(`./posts/${post}`));
+    } = matter(readFileSync(join(process.cwd(), "posts", post)));
 
     if (!cate?.toString().trim()) {
       if (!word) posts.push({ category, date, slug: post.split(".")[0] });

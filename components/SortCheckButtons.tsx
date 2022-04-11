@@ -56,7 +56,7 @@ const SortCheckButtons: NextPage<props> = ({ sort, setSort }) => {
   );
 
   return (
-    <div className="grid grid-cols-2 w-fit mt-1">
+    <div className="grid grid-cols-2 w-fit">
       {checkBoxs.map((key) => (
         <CheckButton
           key={key}

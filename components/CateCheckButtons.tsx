@@ -31,7 +31,7 @@ const CateCheckButtons = () => {
       .map((c: string) => c.trim());
 
   return (
-    <div className="flex w-fit mt-1">
+    <div className="flex w-fit">
       {categories.map((key) => (
         <CheckButton
           key={key}

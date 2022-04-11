@@ -1,6 +1,7 @@
 import Layout from "@components/Layout";
 import matter from "gray-matter";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { useRouter } from "next/router";
 import { join } from "path";
 import React from "react";
 import remarkHtml from "remark-html";
@@ -12,8 +13,12 @@ interface props {
 }
 
 const Slug: NextPage<props> = ({ html }) => {
+  const {
+    query: { slug },
+  } = useRouter();
+
   return (
-    <Layout isSearch={false} title={"Asdf"} isMain={false}>
+    <Layout isSearch={false} title={slug!.toString()} isMain={false}>
       <div className="html" dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   );
@@ -24,6 +29,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     const post = matter.read(
       join(process.cwd(), "posts", `${ctx.params?.slug}.md`)
     );
+
     const html = await unified()
       .use(remarkParse)
       .use(remarkHtml)

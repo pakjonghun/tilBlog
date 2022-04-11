@@ -69,7 +69,7 @@ const SearchForm = () => {
           </svg>
         </button>
       </form>
-      <div className="flex justify-between">
+      <div className="flex justify-between py-3">
         <SortCheckboxs sort={sort} setSort={setSort} />
         <CateCheckButtons />
       </div>

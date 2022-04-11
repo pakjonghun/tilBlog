@@ -21,7 +21,12 @@ const LayoutHeader: NextPage<props> = ({ title, isMain, isSearch }) => {
   }, [router]);
   return (
     <header className={joinStyleClass("bg-gray-800 z-10")}>
-      <nav className="flex flex-col pt-7 px-5  text-gray-50">
+      <nav
+        className={joinStyleClass(
+          "flex flex-col pt-7 px-5  text-gray-50",
+          !isSearch ? "pb-7" : ""
+        )}
+      >
         <div className="flex">
           {!isMain && (
             <button onClick={onPrevious} className="transition scale h-fit">

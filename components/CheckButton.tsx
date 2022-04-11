@@ -18,7 +18,7 @@ const CheckButton: NextPage<props> = ({
   return (
     <label
       className={joinStyleClass(
-        "flex items-center justify-center w-20 py-2 scale cursor-pointer transition select-none",
+        "flex flex-row-reverse items-center justify-center w-20 py-2 scale cursor-pointer transition select-none",
         !isSelected ? "text-gray-400" : "text-gray-50"
       )}
       htmlFor={id}

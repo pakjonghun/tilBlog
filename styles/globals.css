@@ -8,11 +8,16 @@
   }
 
   .html a {
-    @apply transition scale font-medium underline text-gray-500;
+    @apply inline-block transition scale font-medium underline text-gray-600 opacity-70;
   }
 
   .html h2 {
-    @apply mt-6 mb-2;
+    @apply mt-6 mb-2 text-gray-700;
+  }
+
+  .html p,
+  li {
+    @apply text-gray-600;
   }
 
   .html li {
@@ -20,7 +25,7 @@
   }
 
   .html pre {
-    @apply p-5 bg-gray-700 text-gray-100 ml-5 mt-1 mb-5 overflow-scroll rounded-md shadow-md;
+    @apply p-5 bg-gray-700 text-gray-300 ml-5 mt-1 mb-5 overflow-scroll rounded-md shadow-md;
   }
 }
 

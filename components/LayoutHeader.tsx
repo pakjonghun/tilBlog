@@ -29,7 +29,10 @@ const LayoutHeader: NextPage<props> = ({ title, isMain, isSearch }) => {
       >
         <div className="flex">
           {!isMain && (
-            <button onClick={onPrevious} className="transition scale h-fit">
+            <button
+              onClick={onPrevious}
+              className="transition scale h-fit text-xl font-bold"
+            >
               &larr;
             </button>
           )}
@@ -46,7 +49,7 @@ const LayoutHeader: NextPage<props> = ({ title, isMain, isSearch }) => {
             <button onClick={onHome} className="transition scale h-fit">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-7 w-7"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

@@ -7,6 +7,10 @@
     @apply font-bold text-lg;
   }
 
+  .html a {
+    @apply transition scale font-medium underline text-gray-500;
+  }
+
   .html h2 {
     @apply mt-6 mb-2;
   }

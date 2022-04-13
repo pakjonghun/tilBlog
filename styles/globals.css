@@ -18,6 +18,10 @@
   .html li {
     @apply list-disc ml-8 mb-1;
   }
+
+  .html pre {
+    @apply p-5 bg-gray-700 text-gray-100 ml-5 mt-1 mb-5 overflow-scroll rounded-md shadow-md;
+  }
 }
 
 @layer components {

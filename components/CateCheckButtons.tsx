@@ -4,7 +4,7 @@ import React, { useCallback } from "react";
 import CheckButton from "./CheckButton";
 
 const CateCheckButtons = () => {
-  const categories = ["next", "tailwind", "algo", "til"];
+  const categories = ["next", "tailwind", "algo"];
   const router = useRouter();
   const { term, title, date, cate } = router.query;
   const onCategory = useCallback(

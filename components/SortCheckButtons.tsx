@@ -1,8 +1,8 @@
-import { joinStyleClass, makeUrl } from "@libs/server/util";
+import { useCallback } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useState } from "react";
 import CheckButton from "./CheckButton";
+import { joinStyleClass, makeUrl } from "@libs/server/util";
 
 export interface Isort {
   date: null | number;
@@ -56,7 +56,7 @@ const SortCheckButtons: NextPage<props> = ({ sort, setSort }) => {
   );
 
   return (
-    <div className="grid grid-cols-2 w-fit">
+    <div className="grid grid-cols-[repeat(2,minmax(4.2rem,_1fr))]">
       {checkBoxs.map((key) => (
         <CheckButton
           key={key}

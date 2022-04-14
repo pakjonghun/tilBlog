@@ -4,7 +4,7 @@ import React, { useCallback } from "react";
 import CheckButton from "./CheckButton";
 
 const CateCheckButtons = () => {
-  const categories = ["next", "til"];
+  const categories = ["next", "tailwind", "algo", "til"];
   const router = useRouter();
   const { term, title, date, cate } = router.query;
   const onCategory = useCallback(
@@ -31,7 +31,12 @@ const CateCheckButtons = () => {
       .map((c: string) => c.trim());
 
   return (
-    <div className="flex w-fit">
+    <div
+      style={{
+        gridTemplateColumns: `repeat(${categories.length},min-content)`,
+      }}
+      className="grid gap-3"
+    >
       {categories.map((key) => (
         <CheckButton
           key={key}

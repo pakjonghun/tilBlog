@@ -19,7 +19,10 @@ const Slug: NextPage<props> = ({ html }) => {
 
   return (
     <Layout isSearch={false} title={slug!.toString()} isMain={false}>
-      <div className="html" dangerouslySetInnerHTML={{ __html: html }} />
+      <div
+        className="html w-screen"
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
     </Layout>
   );
 };

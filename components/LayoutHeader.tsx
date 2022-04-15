@@ -1,9 +1,8 @@
-import { joinStyleClass } from "@libs/server/util";
-import { NextPage } from "next";
+import { useCallback } from "react";
 import { useRouter } from "next/router";
-import React, { useCallback } from "react";
+import { NextPage } from "next";
 import SearchForm from "@components/SearchForm";
-import { route } from "next/dist/server/router";
+import { joinStyleClass } from "@libs/server/util";
 
 interface props {
   title: string;

@@ -23,7 +23,7 @@ export const initSort = { date: null, title: null };
 
 const SortCheckButtons: NextPage<props> = ({ sort, setSort }) => {
   const router = useRouter();
-  const { term } = router.query;
+  const { term, cate } = router.query;
   const checkBoxs = Object.keys(sort) as ["date", "title"];
 
   const onSort = useCallback(
@@ -47,6 +47,7 @@ const SortCheckButtons: NextPage<props> = ({ sort, setSort }) => {
 
       const url = makeUrl("search", {
         term: term?.toString() || "",
+        ...(cate && { cate: cate.toString() }),
         ...exceptNull,
       });
 

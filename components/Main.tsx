@@ -17,7 +17,7 @@ const Main: NextPage<props> = ({ posts, title, isMain = true }) => {
         {posts.map(({ date, category, slug }, index) => (
           <article
             key={index}
-            className="bg-gray-50 h-fit shadow-base transition scale cursor-pointer rounded-md text-gray-600"
+            className="bg-gray-50 h-fit shadow-md transition scale cursor-pointer rounded-md text-gray-600"
           >
             <Link href={`/${slug}`}>
               <a className="block py-5 px-8">

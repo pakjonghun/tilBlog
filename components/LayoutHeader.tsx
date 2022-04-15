@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { NextPage } from "next";
 import SearchForm from "@components/SearchForm";
 import { joinStyleClass } from "@libs/server/util";
+import Link from "next/link";
 
 interface props {
   title: string;
@@ -35,13 +36,16 @@ const LayoutHeader: NextPage<props> = ({ title, isMain, isSearch }) => {
               &larr;
             </button>
           )}
+
           <h2
             className={joinStyleClass(
               "mx-auto font-medium",
               isSearch ? "mb-10" : ""
             )}
           >
-            {title}
+            <Link href={`/${router.asPath}`}>
+              <a>{title}</a>
+            </Link>
           </h2>
 
           {!isMain && (
@@ -65,7 +69,7 @@ const LayoutHeader: NextPage<props> = ({ title, isMain, isSearch }) => {
         </div>
         {isSearch && <SearchForm />}
       </nav>
-      <div className="shadow-md h-2" />
+      <div className="shadow-md h-[0.3rem] bg-inherit" />
     </header>
   );
 };

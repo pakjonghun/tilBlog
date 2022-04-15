@@ -19,10 +19,10 @@ const LayoutHeader: NextPage<props> = ({ title, isMain, isSearch }) => {
     router.push("/");
   }, [router]);
   return (
-    <header className={joinStyleClass("bg-gray-800 z-10")}>
+    <header className="z-10">
       <nav
         className={joinStyleClass(
-          "flex flex-col pt-7 px-5  text-gray-50",
+          "flex flex-col pt-7 px-5 text-gray-500",
           !isSearch ? "pb-7" : ""
         )}
       >
@@ -65,6 +65,7 @@ const LayoutHeader: NextPage<props> = ({ title, isMain, isSearch }) => {
         </div>
         {isSearch && <SearchForm />}
       </nav>
+      <div className="shadow-md h-2" />
     </header>
   );
 };

@@ -67,7 +67,7 @@ const SortCheckButtons: NextPage<props> = ({ sort, setSort }) => {
           {!!(sort[key] !== null && sort[key]) && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className={joinStyleClass("h-5 w-5 mt-1")}
+              className="h-5 w-5 mt-1"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

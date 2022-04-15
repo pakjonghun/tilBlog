@@ -1,7 +1,7 @@
-import { makeUrl } from "@libs/server/util";
+import { useCallback } from "react";
 import { useRouter } from "next/router";
-import React, { useCallback } from "react";
-import CheckButton from "./CheckButton";
+import { makeUrl } from "@libs/server/util";
+import CheckButton from "@components/CheckButton";
 
 const CateCheckButtons = () => {
   const categories = ["next", "tailwind", "algo"];

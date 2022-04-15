@@ -1,9 +1,8 @@
-import Layout from "@components/Layout";
-import matter from "gray-matter";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import Layout from "@components/Layout";
 import { join } from "path";
-import React from "react";
+import matter from "gray-matter";
 import remarkHtml from "remark-html";
 import remarkParse from "remark-parse/lib";
 import { unified } from "unified";
@@ -19,10 +18,7 @@ const Slug: NextPage<props> = ({ html }) => {
 
   return (
     <Layout isSearch={false} title={slug!.toString()} isMain={false}>
-      <div
-        className="html w-screen"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      <div className="html" dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   );
 };

@@ -25,7 +25,7 @@
   }
 
   .html pre {
-    @apply p-5 bg-gray-700 text-gray-300 mt-1 mb-5 overflow-scroll rounded-md shadow-md;
+    @apply p-5 mx-2 bg-gray-700 text-gray-300 mt-1 mb-5 overflow-scroll rounded-md shadow-md;
   }
 }
 
@@ -39,6 +39,6 @@
   }
 
   .small {
-    @apply font-medium text-sm;
+    @apply font-medium text-sm text-gray-400;
   }
 }

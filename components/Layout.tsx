@@ -26,7 +26,7 @@ const Layout: NextPage<props> = ({
 
       <main
         className={joinStyleClass(
-          "grid place-content-start grid-cols-1 lg:grid-cols-2 gap-10 px-6 py-5 overflow-y-auto",
+          "px-6 py-5 overflow-y-auto",
           isSearch ? "h-[79vh]" : "h-[90vh]"
         )}
       >

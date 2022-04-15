@@ -39,7 +39,7 @@ const SearchForm = () => {
     <>
       <form
         onSubmit={onSubmit}
-        className="relative flex items-center w-full bg-gray-600 rounded-sm"
+        className="relative flex items-center w-full bg-gray-50 rounded-sm"
       >
         <input
           autoFocus
@@ -47,11 +47,11 @@ const SearchForm = () => {
           onChange={onChange}
           type="text"
           placeholder="Search"
-          className="w-full py-3 px-10 transition ring-gray-400 focus:ring-1 focus:outline-none bg-transparent"
+          className="w-full py-3 px-10 transition ring-gray-400 focus:ring-1 focus:outline-none bg-transparent placeholder:text-gray-400"
         />
         <button
           type="submit"
-          className="absolute left-0 py-3 px-2 w-[8%] transition scale"
+          className="absolute left-0 py-3 px-2 w-[8%] transition scale text-gray-400"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,5 @@
-import { joinStyleClass } from "@libs/server/util";
 import { NextPage } from "next";
-import React from "react";
+import { joinStyleClass } from "@libs/server/util";
 
 interface props {
   isSelected: boolean;
@@ -19,7 +18,7 @@ const CheckButton: NextPage<props> = ({
     <label
       className={joinStyleClass(
         "flex flex-row-reverse items-center justify-center py-2 scale cursor-pointer transition select-none",
-        !isSelected ? "text-gray-400" : "text-gray-50"
+        !isSelected ? "text-gray-400" : "text-gray-600"
       )}
       htmlFor={id}
     >

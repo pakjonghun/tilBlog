@@ -4,7 +4,7 @@ import { makeUrl } from "@libs/server/util";
 import CheckButton from "@components/CheckButton";
 
 const CateCheckButtons = () => {
-  const categories = ["next", "tailwind", "algo"];
+  const categories = ["til", "algo"];
   const router = useRouter();
   const { term, title, date, cate } = router.query;
   const onCategory = useCallback(
@@ -17,6 +17,8 @@ const CateCheckButtons = () => {
         ...(date && { date: date.toString() }),
         cate: selected,
       });
+
+      if (!url) return;
 
       router.push(url);
     },

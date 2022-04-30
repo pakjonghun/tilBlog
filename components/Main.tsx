@@ -16,7 +16,7 @@ const Main: NextPage<props> = ({ posts, title, isMain = true }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 place-content-start">
         {posts.map(({ date, category, slug }, index) => (
           <article
-            key={index}
+            key={`${date}-${slug}-${index}`}
             className="bg-gray-50 h-fit shadow-md transition scale cursor-pointer rounded-md text-gray-600"
           >
             <Link href={`/${slug}`}>

@@ -13,12 +13,15 @@ interface props {
 
 const LayoutHeader: NextPage<props> = ({ title, isMain, isSearch }) => {
   const router = useRouter();
+
   const onPrevious = useCallback(() => {
     router.back();
   }, [router]);
+
   const onHome = useCallback(() => {
     router.push("/");
   }, [router]);
+
   return (
     <header className="z-10">
       <nav
@@ -43,7 +46,7 @@ const LayoutHeader: NextPage<props> = ({ title, isMain, isSearch }) => {
               isSearch ? "mb-10" : ""
             )}
           >
-            <Link href={`/${router.asPath}`}>
+            <Link href={router.asPath}>
               <a>{title}</a>
             </Link>
           </h2>

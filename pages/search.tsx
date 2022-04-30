@@ -46,9 +46,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         }
       }
 
-      if (isMatch) {
-        posts.push({ category, date, slug: post.split(".")[0] });
-      }
+      if (isMatch) posts.push({ category, date, slug: post.split(".")[0] });
     }
   });
 

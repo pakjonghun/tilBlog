@@ -45,15 +45,18 @@ const SortCheckButtons: NextPage<props> = ({ sort, setSort }) => {
         return acc;
       }, {});
 
-      const url = makeUrl("search", {
+      const params = {
         term: term?.toString() || "",
         ...(cate && { cate: cate.toString() }),
         ...exceptNull,
-      });
+      };
 
+      const url = makeUrl("search", params);
+
+      if (!url) return;
       router.push(url);
     },
-    [sort, router, checkBoxs, term, setSort]
+    [sort, router, checkBoxs, cate, term, setSort]
   );
 
   return (

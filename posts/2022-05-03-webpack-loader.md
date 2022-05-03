@@ -31,3 +31,21 @@ category: webpack, loader
   use: ["style-loader", "css-loader", "sass-loader"],
 },
 ```
+
+- js 최신문법(아직 브라우저에서는 지원 안하는 것들)을 웹팩을 통해 파싱 시킬 수도 있다.
+
+```
+//use 안에 로더만 넣는 것이 아니라
+//로더 에 옵션을 넣어주어하며 사용하는 플러그 인도 정해서 넣어 줄 수 있다.
+{
+    test: /\.js$/,
+    exclude: /node_modules/,
+    use: {
+      loader: "babel-loader",
+      options: {
+        presets: ["@babel/env"],
+        plugins: ["@babel/plugin-proposal-class-properties"],
+      },
+    },
+  },
+```

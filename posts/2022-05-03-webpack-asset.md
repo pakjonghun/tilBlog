@@ -1,10 +1,11 @@
 ---
 date: 2022-05-03
-category: webpack
+category: webpack, asset
 ---
 
 ## intro
 
+- 웹팩의 내장된 기능 type 을 이용한다.
 - 웹팩은 번들링과 최적화 위해 사용한다.
 - [웹팩설치](https://webpack.js.org/guides/getting-started/)
 - 웹팩은 기본적으로 import export 문법 즉 es6 문법을 지원한다.

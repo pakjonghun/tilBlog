@@ -1,99 +1,59 @@
 ---
 date: 2022-05-03
-category: webpack, plugin
+category: webpack, spliting
 ---
 
-## plugin
-
-- plugins 플러그인 엄청 많다 [doc](https://webpack.js.org/plugins/)
-
-- 단순 로더 외 더 많은 일을 할 수 있는 도구다. 이를테면 번들 사이즈 크기를 더 작게하거나 여러개로 나누어 번들링 하거나 등등.
-
-### terserPlugin
-
--[doc](https://webpack.js.org/plugins/terser-webpack-plugin/)
-
-- webpack 5 에서 기본으로 적용하고 있으나 실제 설치해서 사용하니 용량이 더 줄긴 했다
-- 번들파일 용량이 많이 줄일 수 있다.
-- terser-webpack-plugin
+## Multi page(파일) 분할 방법
 
 ```
-const TerserPlugin = require("terser-webpack-plugin");
-
-plugins: [new TerserPlugin()],
-```
-
-### MiniCssExtractPlugin
-
-- [doc](https://webpack.js.org/plugins/mini-css-extract-plugin/#root)
-- css 파일을 별도로 분리 할 수 있다(이거 왜 하냐면 다이나믹 번들링 하려고 하는거다.)
-- 파일이름을 설정 할 수도 있으며, 로더에 별도로 추가를 또 해줘야 한다.
-- 또 이 파일을 별도로 html 에 포함해줘야 한다.
-
-```
-//임포트
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-//로더에 추가 style-loader 대신 MiniCssExtractPlugin.loader 를 사용함.
-{
-  test: /\.scss$/,
-  use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-},
-
-//plugin 에 추가
-new MiniCssExtractPlugin({
-  filename: "abc.css",
-}),
-```
-
-## broswer caching
-
-- 파일이름!! **이름** 을 캐슁해서 이름이 다른것만 다시 다운로드 함
-- 이름은 파일 내용이 변경되었을때 발생함 웹팩에서(파일이름에 [contenthash] 추가하면됨.
-- js css 등등 다 가능
-
-```
-filename: "bundle[contenthash].js",
- new MiniCssExtractPlugin({
-      filename: "abc[contenthash].css",
-    }),
-```
-
-## html-webpack-plugin
-
-- [doc](https://webpack.js.org/plugins/html-webpack-plugin/#root)
-
-- 위와 같이 파일명을 해쉬 해버리면 html 에서 읽을 수 있게 자동으로 script link 를 바꿔준다.
-- public path 에서 dist 까지 없애고,
-- 웹팩에 있는 html 파일만 있으면 되니까 root 에 html 까지 지우면 완벽하다
-
-```
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-//아래와 같이 타이틀이나 메타태그 심지어 파일 이 들어갈 폴더까지 커스텀 가능(폴더 지정해줄 경우 publicPath 수정이 필요함)
-new HtmlWebpackPlugin({
-  title: "origin",
-  filename: "sub/iiinnndddeeexxx.html",
-  meta: {
-    description: "desc",
+//엔트리가 여러개 가 될수 있다 멀티 페이지 일 경우
+//이때 각 key 값이 output의 [name]이 된다.
+entry: {
+    hellow: "./src/index.js",
+    img: "./src/index2.js",
   },
-}),
-
+  output: {
+    filename: "[name].js",
+    path: path.join(__dirname, "dist"),
+    publicPath: "",
+  },
 ```
 
-## clean-webpack-plugin
-
-- [doc](https://www.npmjs.com/package/clean-webpack-plugin)
-- 웹팩 다시 번들링 시 알아서 기존파일 삭제하는 플러그인
-- 삭제할 파일명 패턴도 정해줄 수 있다.
+- css 분할도 마찬가지다.
 
 ```
-//폴더 파일 싹다
-new CleanWebpackPlugin({
-  cleanOnceBeforeBuildPatterns: ["**/*"],
+new MiniCssExtractPlugin({
+  filename: "[name].[contenthash].css",
 }),
+```
 
-//위와 동일하지만 이런식으로 외부에 있는 폴더 파일도 없애 줄 수 있다.
-new CleanWebpackPlugin({
-  cleanOnceBeforeBuildPatterns: ["**/*", path.join(__dirname, "dist/**/*")],
+- 분할 html 은 아예 htmlplugin 객체를 필요한 만큼 만들면 된다.
+
+```
+//이름 과 청크(포할될 js 번들 이름<-- 이건 변수가 아니라 "string" 이 되야하며 entry name 과 동일 해야 한다.>, 등이 포함되면 된다.)
+new HtmlWebpackPlugin({
+  title: "origin2",
+  chunks: ["index2"],
+  filename: "sub/index.html",
+  meta: {
+    description: "desc2",
+  },
+  minify: false,
 }),
+```
+
+## optimization 라이브러리 사용시 최적화 방법
+
+- 라이브러리를 그냥 사용하고 아무 설정 안하면 모든 번들링 파일에 라이브러리가 포함된다. 비효율적
+- 아래 설정 하면 라이브러리는 별도 번들링 되어 캐슁되어 재활용 된다. 개 효율
+- 아래 설정을 하면 html 파일 에 꼭 필요한 곳에만 script(라이브러리 연결)이 생성된다.
+- 아래 옵션은 30kb 초과시에만 공통 종속성을 추출한다. 하지만 minSize 로 변경 할 수도 있다.
+
+```
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      minSize:1024*3   //3kb 너머갈때만 공통 의존성으로 추출한다.
+    },
+  },
 ```
